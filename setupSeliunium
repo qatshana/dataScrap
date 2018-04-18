@@ -1,0 +1,23 @@
+1) Install seliunium
+
+C:\Python34\Scripts\pip.exe install -U selenium
+
+2) download and install geckodriver
+https://github.com/mozilla/geckodriver/releases
+
+2.5) extract to c:\Users\aqatshan\
+and add to path==> evironment varilables ==>path
+
+3) download and install firefox
+
+
+
+
+from selenium import webdriver
+driver = webdriver.Firefox(executable_path=r'C:\Users\aqatshan\geckodriver.exe')
+
+browser=webdriver.Firefox()
+browser.get('http://www.google.com')
+
+
+

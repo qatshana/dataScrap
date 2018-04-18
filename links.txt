@@ -1,0 +1,3 @@
+
+stocks: https://english.mubasher.info/markets/TDWL/stocks/1090
+profile: https://english.mubasher.info/markets/TDWL/stocks/1090/profile
