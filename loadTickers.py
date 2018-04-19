@@ -1,12 +1,12 @@
 import pandas as pd
 
-df=pd.read_csv('TasiCompanyList.csv')
+df2=pd.read_csv('TasiCompanyList.csv')
+df2.set_index('COMPANY',inplace=True)
+tickers=[]
+for t in df2.index:
+    txt=str(df2.loc[t]['SYMBOL'])
+    tickers.append(txt)
 
-print (df.head())
-df.set_index('COMPANY',inplace=True)
-print (df.head())
-print(df.loc['samba':'ARNB',['SYMBOL']])
-
-tickers=df.loc['samba':'ARNB',['SYMBOL']].values
 
 print (tickers)
+print (len(tickers))
