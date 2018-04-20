@@ -1,48 +1,37 @@
-1524194107771	geckodriver	INFO	geckodriver 0.20.1
-1524194107773	geckodriver	INFO	Listening on 127.0.0.1:53311
-1524194110836	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-profile" "C:\\Users\\qatsh\\AppData\\Local\\Temp\\rust_mozprofile.uuIewVn87mN6"
+1524223805530	geckodriver	INFO	geckodriver 0.20.1
+1524223805545	geckodriver	INFO	Listening on 127.0.0.1:62014
+1524223808631	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "-marionette" "-profile" "C:\\Users\\qatsh\\AppData\\Local\\Temp\\rust_mozprofile.tTDZpfcDxKCa"
 Unable to read VR Path Registry from C:\Users\qatsh\AppData\Local\openvr\openvrpaths.vrpath
-1524194111388	Marionette	INFO	Enabled via --marionette
-Unable to read VR Path Registry from C:\Users\qatsh\AppData\Local\openvr\openvrpaths.vrpath
-Unable to read VR Path Registry from C:\Users\qatsh\AppData\Local\openvr\openvrpaths.vrpath
+1524223809154	Marionette	INFO	Enabled via --marionette
 Unable to read VR Path Registry from C:\Users\qatsh\AppData\Local\openvr\openvrpaths.vrpath
 Unable to read VR Path Registry from C:\Users\qatsh\AppData\Local\openvr\openvrpaths.vrpath
-1524194112922	Marionette	INFO	Listening on port 53319
-1524194114042	Marionette	WARN	TLS certificate errors will be ignored for this session
-[Child 6872, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
-[Child 6872, [Child 14468, Chrome_ChildThread] WARNING[Parent 12856, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
-*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+Unable to read VR Path Registry from C:\Users\qatsh\AppData\Local\openvr\openvrpaths.vrpath
+Unable to read VR Path Registry from C:\Users\qatsh\AppData\Local\openvr\openvrpaths.vrpath
+1524223810556	Marionette	INFO	Listening on port 62022
+1524223810716	Marionette	WARN	TLS certificate errors will be ignored for this session
+[Parent 10156, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7856, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 7856, Chro[*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
 
 ###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
 
-ommon/ipc_channel_win.cc, line 346
-[Child 5980, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
-[Child 5980, Chro*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+ profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
 
 ###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
 
-ot send/recv
-
-geChannel::SendAndWait] Error: Channel error: cannot send/recv
-
-hannel::SendAndWait] Error: Channel error: cannot send/recv
-
-annot send/recv
-
- cannot send/recv
-
-dAndWait] Error: Channel error: cannot send/recv
-
-v
-
-el_win.cc, line 346
-[Child 13284, Ch*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
+ring timer registration for id: telemetry_modules_ping
 
 ###!!! [Child][MessageChannel::SendAndWait] Error: Channel error: cannot send/recv
 
-ating failure)
+#!!! [Child][MessageChannel] Error: (msgtype=0x150001,name=PBrowser::Msg_AsyncMessage) Closed channel: cannot send/recv
 
-[Parent 8552, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+JavaScript error: chrome://browser/content/content.js, line 700: NS_ERROR_UNEXPECTED: Component returned failure code: 0x8000ffff (NS_ERROR_UNEXPECTED) [nsIMessageSender.sendAsyncMessage]
+[Parent 3500, Gecko_IOThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+[Child 5020, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
+
+###!!! [Child][MessageChannel] Error: (msgtype=0x15002B,name=PBrowser::Msg_SetInputContext) Closed channel: cannot send/recv
+
+: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
 [Child 6412, Chrome_ChildThread] WARNING: pipe error: 109: file z:/build/build/src/ipc/chromium/src/chrome/common/ipc_channel_win.cc, line 346
 [Child 6412, Chr*** UTM:SVC TimerManager:registerTimer called after profile-before-change notification. Ignoring timer registration for id: telemetry_modules_ping
 
