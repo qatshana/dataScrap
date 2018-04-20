@@ -12,7 +12,6 @@ def readFile(fname):
 	soup = BeautifulSoup(data,"html.parser")
 	return soup	
 
-
 def readFileJson(fname):	
 	with open(fname, "r") as fr:
 		data=fr.read()
@@ -24,44 +23,27 @@ def readMubasherDataStocks(name):
 	soup=readFile(fname)
 	val1='ng-scope'
 	stocksList=soup.findAll('tr', {'class': val1})
-	
-	stock=stocksList[0]
-	#print (stock)
 	fullList=[]
+	dFinal={}
 	for stock in stocksList:
 		valPrice='number ng-binding'
 		valName='nowrap'
 		price=stock.findAll('td', {'class': valPrice})
+		d1=dict([('Close Price',price[0].text)])
 		name=stock.find('td', {'class': valName})
-		valChangePerc='number ng-binding'
-		changePercent=stock.find('td', {'class': valChangePerc})
-		
-		
-		#print (name.text.strip(),price[0].text,price[1].text.strip())
-		
+		#valChangePerc='number ng-binding'
+		#changePercent=stock.find('td', {'class': valChangePerc})	
+		d2=dict([('Change %',price[1].text.strip())])
+		d1.update(d2)
+		d3=dict([(name.text.strip(),d1)])
+		dFinal.update(d3)	
 		d=[name.text.strip(),price[0].text,price[1].text.strip()]
-		valChange='mi-hide-for-small number ng-binding'
-
+		valChange='mi-hide-for-small'
 		change=stock.findAll('td', {'class': valChange})
-
-		#print (change)	
 		for c in change:
-			#print (c.text)
 			d.append(c.text)
-		fullList.append(d)	
-	print (d)
-
-	#items=[]
-	#values=[]
-	#d2={}
-
-	'''
-	for market in marketBlock:
-		item=market.find('span', {'class': val1})
-		value=market.find('span', {'class': item1})
-	'''
-	dfinal=10
-	return dfinal
+		fullList.append(d)		
+	return (fullList,dFinal)
 
 '''
 	companyName=soup.find('h1', {'class': val1})
@@ -138,11 +120,23 @@ def saveJsonFile(file,d):
 		fw.write(dJson)
 	
 
-if __name__ == "__main__":
-	
-	fname='TasiStocksPrices'
-	d1=readMubasherDataStocks(fname)
-	
-	#fname=ticker+"-Desc.json"
-	#saveJsonFile(fname,d1)
+if __name__ == "__main__":	
+	exchange='sa'
+	exchange='om'
+	exchange='ae'
+	exchange='eg'
+	exchanges=['sa','ae','om','eg']
+	for exchange in exchanges:
+		fname=exchange+'StocksPrices'
+		(stocksList,stocksListDict)=readMubasherDataStocks(fname)
+		rowList=['Ticker','Close Price', 'Change %', 'Empty','Traded Value',  'Volume', 'Bid Price', 'Day High', 'Day Low','Date']
+		df1=pd.DataFrame(stocksList)
+		df1.columns=rowList
+		df1.drop('Empty',axis=1,inplace=True)	
+		fileCsv=fname+'.csv'
+		df1.to_csv(fileCsv)
+		print('Done with '+ exchange)
+		stocksListJson=json.dumps(stocksListDict)
+		with open(fname+'.json','w') as fw:
+			fw.write(stocksListJson)
 	
