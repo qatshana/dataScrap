@@ -57,8 +57,9 @@ def saveJsonFile(fname,d):
 if __name__ == "__main__":	
 	exchange='sa'
 	exchanges=['sa','ae','om','eg']
+	date='-2018-04-22-'
 	for exchange in exchanges:
-		fname=exchange+'StocksPrices'
+		fname=exchange+date+'StocksPrices'
 		(stocksList,stocksListDict)=readMubasherDataStocks(fname)
 		rowList=['Ticker','Name','Close Price', 'Change %', 'Empty','Traded Value',  'Volume', 'Bid Price', 'Day High', 'Day Low','Date']
 		df1=pd.DataFrame(stocksList)

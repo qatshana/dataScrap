@@ -1,7 +1,7 @@
 from selenium import webdriver
-import datetime
 from time import sleep
 import io
+from datetime import datetime
 
 delayTimer=30 # delay timer in seconds
 
@@ -15,14 +15,15 @@ def dowloadTasiStocks(fname,ur):
 	    f.write(data)
 
 if __name__ == "__main__":
-	timeStamp=datetime.datetime.now()
+	#timeStamp=datetime.datetime.now()
 	country='sa'
 
 	countries=['sa','ae','om','eg']
 	#countries=['sa']
+	date=str(datetime.now().date())
 	listType='all-stock-prices'
 	for country in countries:
-		fname=country+'StocksPrices.html'	
+		fname=country+'-'+date+'-'+'StocksPrices.html'	
 		ur='https://english.mubasher.info/countries/'+country+'/'+listType
 		dowloadTasiStocks(fname,ur)
 		print (country)

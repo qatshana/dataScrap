@@ -8,19 +8,18 @@ import io
 
 from datetime import datetime
 # list of columns received ==> total is 9 columns
-col=['Close Price','Last Trade Vol','Change Value','Change %','No of Trades','Total Volume','Bid Price','Bid Vol','Offer Price']
+#col=['Close Price','Last Trade Vol','Change Value','Change %','No of Trades','Total Volume','Bid Price','Bid Vol','Offer Price']
+col=['Close Price','Change Value','Change %','No of Trades','Total Volume','Bid Price','Bid Vol','Offer Price']
 # delay timer to allow for the browser to connect and download results in seconds
 delayTimer=20
 
 def readFile(fname):
 	with open(fname,'r') as fr:
 		data=fr.read()	
-	soup = BeautifulSoup(data)
+	soup = BeautifulSoup(data,"html.parser")
 	return soup	
 
-def readHteml(group,soup):	
-	
-
+def readHteml(group,soup):		
 	Lmod=[]
 	rowsGeneral= soup.findAll('tr', {'class': group})
 	for m in rowsGeneral:
@@ -65,16 +64,16 @@ def getDfStockPricesAll(fname):
 	return getDFStockPrices(groups,fname)
 
 
-def genStockCsc(file,fr):
+def genStockCsv(file,fr):
 	df=getDfStockPricesAll(fr)
 	with open(file,'w') as fw:
 		df.to_csv(fw,index=False)		
 
 
-
 def dowloadTasiStocks(fname):
 	ur='https://www.tadawul.com.sa/wps/portal/tadawul/markets/equities/market-watch'
-	browser=webdriver.Firefox(executable_path=r'C:\Users\qatsh\geckodriver.exe')
+	#browser=webdriver.Firefox(executable_path=r'C:\Users\qatsh\geckodriver.exe')
+	browser=webdriver.Firefox()
 	browser.get(ur)
 	sleep(delayTimer)
 	data=browser.page_source
@@ -89,9 +88,10 @@ def genDFStock(fname):
 	df2.set_index(df2['0'],inplace=True)
 	df2.drop(['0'],axis=1,inplace=True)
 	#col=['Close Price','Last Trade Vol','Change Value','Change %','No of Trades','Total Volume','Bid Price','Bid Vol','Offer Price']
+	col=['Close Price','Change Value','Change %','No of Trades','Total Volume','Bid Price','Bid Vol','Offer Price']
 	df2.columns=col
-	m='Last Trade Vol'
-	df2[m]= df2[m].str.replace(',', '')
+	#m='Last Trade Vol'
+	#df2[m]= df2[m].str.replace(',', '')
 	m='No of Trades'
 	df2[m]= df2[m].str.replace(',', '')
 	m='Total Volume'
@@ -109,9 +109,10 @@ def genJsonStock(fname):
 	df2.set_index(df2['0'],inplace=True)
 	df2.drop(['0'],axis=1,inplace=True)
 	#col=['Close Price','Last Trade Vol','Change Value','Change %','No of Trades','Total Volume','Bid Price','Bid Vol']
+
 	df2.columns=col
-	m='Last Trade Vol'
-	df2[m]= df2[m].str.replace(',', '')
+	#m='Last Trade Vol'
+	#df2[m]= df2[m].str.replace(',', '')
 	m='No of Trades'
 	df2[m]= df2[m].str.replace(',', '')
 	m='Total Volume'
@@ -123,15 +124,6 @@ def genJsonStock(fname):
 	status=True
 	for c in df2.index:		
 		d1=dict(df2.loc[c])
-		'''
-		# there is dublicate ticker/row in Tadawul list which causes and issue when try to 
-		# generate json file. Can not get json file for now, try to rename the ticker after download
-
-		if (c=='SCC' and status==True):
-			df.loc[c]
-			c='SCC1'
-			status=False
-		'''	
 		d2=dict([(c,d1)])
 		d3.update(d2)
 	return d3
@@ -141,17 +133,17 @@ def saveJsonStockFile(fname,data):
 		fw.write(dataJson)
 
 if __name__ == "__main__":
-	fname='test2.html'  # name to downloaded html file
-	dowloadTasiStocks(fname)
-	#fr='test.html'
-	fr=fname
+	fname='TASI-2018-04-22.html'
+	#fname='test2.html'
+	#dowloadTasiStocks(fname)
+	
 	date=str(datetime.now().date())
 
 	file='TASI-'+date+'.csv'  # date stamp file generated (one file per day)
-	genStockCsc(file,fr)
+	genStockCsv(file,fname)
 
 
-	d3=genJsonStock(file)
+	#d3=genJsonStock(file)
 
 	#fnameJson='stocks.json'
 
@@ -159,6 +151,6 @@ if __name__ == "__main__":
 
 
 	#print(d3['samba'])
-	df4=genDFStock(file)   # get list in dataframe format and sort 
-	print(df4.head())	#print out top losers
+	#df4=genDFStock(file)   # get list in dataframe format and sort 
+	#print(df4.head(10))	#print out 10 worst performers
 
