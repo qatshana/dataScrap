@@ -150,10 +150,18 @@ if __name__ == "__main__":
 	i=0
 	for ticker in tickers:
 		d1=readMubasherDataProfile(ticker)
+		
 		d2=readMubasherDataStock(ticker,d1)
+		
 		fname=ticker+"-Desc.json"
 		saveJsonFile(fname,d1)
 		fname=ticker+'-FullData.json'
 		saveJsonFile(fname,d2)
+
+		fname=ticker+"-stock.json"
+		d1={}
+		d2=readMubasherDataStock(ticker,d1)
+		saveJsonFile(fname,d2)		
+
 		i+=1
 		print(i)

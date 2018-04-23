@@ -27,10 +27,11 @@ if __name__ == "__main__":
 	#exchange='EGX'
 
 	for ticker in tickers:
-		#ticker='4011'
+
+
 		fname=ticker+'-Profile.html'
 		ur='https://english.mubasher.info/markets/'+exchange+'/stocks/'+ticker+'/profile'
-		dowloadTasiStocks(fname,ur)
+		#dowloadTasiStocks(fname,ur) # skip the profiles
 		
 		fname=ticker+'-Stock.html'
 		ur='https://english.mubasher.info/markets/'+exchange+'/stocks/'+ticker

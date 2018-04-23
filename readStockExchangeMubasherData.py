@@ -22,7 +22,7 @@ with open('eg-2018-04-22-StocksPrices.json','r') as fr:
     data=fr.read()
 
 d=json.loads(data)
-print (d['HRHO'])
+print (d['COMI'])
 
 
 df=pd.read_csv('eg-2018-04-22-StocksPrices.csv')
@@ -31,8 +31,21 @@ df.drop('Unnamed: 0',axis=1,inplace=True)
 
 df.set_index('Ticker',inplace=True)
 
-print(df.loc['HRHO'])
+print(df.loc['COMI'])
+
+print(df.head(10))
+
+print(df.tail(5))
 
 
 
+df=pd.read_csv('sa-2018-04-22-StocksPrices.csv')
 
+df.drop('Unnamed: 0',axis=1,inplace=True)
+
+df.set_index('Ticker',inplace=True)
+
+
+print(df.head(10))
+
+print(df.tail(10))
